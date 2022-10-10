@@ -27,10 +27,19 @@ function App() {
     },
     [todoList]
   );
+  const addTodo = useCallback(
+    (value: string) => {
+      setTodoList([
+        { content: value, done: false, id: Date.now().toString() },
+        ...todoList,
+      ]);
+    },
+    [todoList]
+  );
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <TodoList onChange={onTodoChange} todoList={todoList} />
+      <TodoList onChange={onTodoChange} addTodo={addTodo} todoList={todoList} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import TodoItem from "./TodoItem";
-import { MouseEvent } from "react";
+import { MouseEvent, FormEvent, useCallback } from "react";
+import TodoInput from "./TodoInput";
 
 type TodoData = {
   id: string;
@@ -12,17 +13,23 @@ type TodoDataList = TodoData[];
 type TodoListProps = {
   todoList: TodoDataList;
   onChange: (id: string, event: MouseEvent) => void;
+  addTodo: (content: string) => void;
 };
 
 function TodoList(props: TodoListProps) {
-  const { todoList, onChange } = props;
+  const { todoList, onChange, addTodo } = props;
+
+  const handleInputChange = useCallback(
+    (value: string) => {
+      addTodo(value);
+    },
+    [addTodo]
+  );
+
   return (
-    <div className=" w-96 h-156 list-shadow">
+    <div className="w-96 h-156 border-rounded-4 list-shadow">
       <div className="w-1/1 h-16">
-        <input
-          className="w-1/1 h-16 block border-none margin-0 padding-0"
-          placeholder="What needs to be done?"
-        />
+        <TodoInput handleConfirm={handleInputChange} />
       </div>
       {todoList.map((todo: TodoData) => {
         const { id, done, content } = todo;
