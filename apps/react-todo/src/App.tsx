@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import TodoList from "./components/TodoList";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       content: "First Todo",
     },
   ]);
+  const [filterType, setFilterType] = useState("All");
 
   const onTodoChange = useCallback(
     (id: string) => {
@@ -36,10 +37,33 @@ function App() {
     },
     [todoList]
   );
+  const onFilterChange = useCallback(
+    (filterType: string) => {
+      setFilterType(filterType);
+    },
+    [setFilterType]
+  );
+
+  const list = useMemo(() => {
+    switch (filterType) {
+      case "Active":
+        return todoList.filter((item) => !item.done);
+      case "Completed":
+        return todoList.filter((item) => item.done);
+      default:
+        return todoList;
+    }
+  }, [filterType, todoList]);
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <TodoList onChange={onTodoChange} addTodo={addTodo} todoList={todoList} />
+      <TodoList
+        filterType={filterType}
+        onFilterChange={onFilterChange}
+        onChange={onTodoChange}
+        addTodo={addTodo}
+        todoList={list}
+      />
     </div>
   );
 }
