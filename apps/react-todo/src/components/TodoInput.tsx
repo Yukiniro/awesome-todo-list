@@ -27,7 +27,7 @@ function TodoInput(props: TodoInputProps) {
   };
   const onKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter") {
-      (inputRef.current as unknown as HTMLInputElement).blur();
+      onHandleConfirm();
     }
   };
 
