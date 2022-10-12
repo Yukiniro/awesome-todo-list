@@ -44,4 +44,5 @@ function TodoInput(props: TodoInputProps) {
   );
 }
 
+export type { TodoInputProps };
 export default TodoInput;

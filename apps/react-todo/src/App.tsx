@@ -1,14 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
-import TodoList from "components/TodoList";
+import TodoList, { TodoDataList } from "components/TodoList";
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    {
-      id: "1",
-      done: false,
-      content: "First Todo",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([] as unknown as TodoDataList);
   const [filterType, setFilterType] = useState("All");
 
   const onTodoChange = useCallback(

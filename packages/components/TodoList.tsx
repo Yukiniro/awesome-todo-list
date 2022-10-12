@@ -69,4 +69,5 @@ function TodoList(props: TodoListProps) {
   );
 }
 
+export type { TodoData, TodoDataList, TodoListProps };
 export default TodoList;

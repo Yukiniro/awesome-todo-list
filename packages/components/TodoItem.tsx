@@ -47,4 +47,5 @@ function TodoItem(props: TodoItemProps) {
   );
 }
 
+export type { TodoItemProps };
 export default TodoItem;

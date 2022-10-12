@@ -23,4 +23,5 @@ function FilterOption(props: FilterOptionProps) {
   );
 }
 
+export type { FilterOptionProps };
 export default FilterOption;
