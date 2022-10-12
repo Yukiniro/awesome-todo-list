@@ -1,5 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
-import TodoList, { TodoDataList } from "components/TodoList";
+import { useCallback, useMemo, useState, createContext, Context } from "react";
+import TodoList, { TodoDataList } from "./TodoList";
+
+const TodoListContext: Context<TodoDataList> = createContext(
+  [] as unknown as TodoDataList
+);
+const FilterTypeContext = createContext("All");
 
 function App() {
   const [todoList, setTodoList] = useState([] as unknown as TodoDataList);
@@ -51,16 +56,19 @@ function App() {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <TodoList
-        title="Context Todo"
-        filterType={filterType}
-        onFilterChange={onFilterChange}
-        onChange={onTodoChange}
-        addTodo={addTodo}
-        todoList={list}
-      />
+      <TodoListContext.Provider value={list}>
+        <FilterTypeContext.Provider value={filterType}>
+          <TodoList
+            title="Context Todo"
+            onFilterChange={onFilterChange}
+            onChange={onTodoChange}
+            addTodo={addTodo}
+          />
+        </FilterTypeContext.Provider>
+      </TodoListContext.Provider>
     </div>
   );
 }
 
+export { TodoListContext, FilterTypeContext };
 export default App;
