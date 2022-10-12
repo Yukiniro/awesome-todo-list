@@ -52,6 +52,7 @@ function App() {
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <TodoList
+        title="React Todo"
         filterType={filterType}
         onFilterChange={onFilterChange}
         onChange={onTodoChange}

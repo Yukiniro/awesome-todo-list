@@ -12,6 +12,7 @@ type TodoData = {
 type TodoDataList = TodoData[];
 
 type TodoListProps = {
+  title: string;
   todoList: TodoDataList;
   filterType: string;
   onFilterChange: (filterType: string) => void;
@@ -20,7 +21,8 @@ type TodoListProps = {
 };
 
 function TodoList(props: TodoListProps) {
-  const { todoList, onFilterChange, onChange, addTodo, filterType } = props;
+  const { title, todoList, onFilterChange, onChange, addTodo, filterType } =
+    props;
 
   const handleInputChange = useCallback(
     (value: string) => {
@@ -31,10 +33,13 @@ function TodoList(props: TodoListProps) {
 
   return (
     <div className="w-96 h-156 border-rounded-4 list-shadow">
-      <div className="w-1/1 h-16">
+      <div className="text-3xl h-16 font-mono p-4 border-gray-200 border-b-1 text-center">
+        {title}
+      </div>
+      <div className="w-1/1 h-16 overflow-hidden">
         <TodoInput handleConfirm={handleInputChange} />
       </div>
-      <div className="h-8 flex justify-end items-center">
+      <div className="h-8 border-gray-200 border-t-1 border-b-1 flex justify-end items-center">
         <FilterOption
           onChange={onFilterChange}
           checked={filterType === "All"}
@@ -51,7 +56,7 @@ function TodoList(props: TodoListProps) {
           name="Completed"
         />
       </div>
-      <div className="overflow-y-scroll h-132">
+      <div className="overflow-y-scroll h-112">
         {todoList.map((todo: TodoData) => {
           const { id, done, content } = todo;
           return (
