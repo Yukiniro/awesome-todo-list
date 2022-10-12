@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import TodoList from "./components/TodoList";
+import TodoList from "components/TodoList";
 
 function App() {
   const [todoList, setTodoList] = useState([
