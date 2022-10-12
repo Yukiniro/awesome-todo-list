@@ -5,6 +5,9 @@ import { presetUno, presetIcons } from "unocss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  esbuild: {
+    target: "ESNext",
+  },
   plugins: [
     react(),
     Unocss({
