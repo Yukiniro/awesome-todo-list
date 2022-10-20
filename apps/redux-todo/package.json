@@ -1,0 +1,28 @@
+{
+  "name": "redux-todo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "tsc"
+  },
+  "dependencies": {
+    "components": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsconfig": "workspace:*"
+  },
+  "devDependencies": {
+    "@iconify-json/material-symbols": "^1.1.20",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "eslint-config-custom": "workspace:*",
+    "typescript": "^4.6.4",
+    "unocss": "^0.45.26",
+    "vite": "^3.1.0"
+  }
+}
